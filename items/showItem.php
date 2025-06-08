@@ -1,0 +1,230 @@
+<?php
+	include($_SERVER['DOCUMENT_ROOT']."/htaccess.php");
+	
+	include($_SERVER['DOCUMENT_ROOT']."/$stockManager/mysqlconnectdb.php");
+	include($_SERVER['DOCUMENT_ROOT']."/$stockManager/var.php");
+?>
+
+  <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="Pushy is an off-canvas navigation menu for your website.">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+        <link rel="stylesheet" href="/<?=$stockManager?>/css/normalize.css">
+        <link rel="stylesheet" href="/<?=$stockManager?>/css/demo.css">
+        <!-- Pushy CSS -->
+        <link rel="stylesheet" href="/<?=$stockManager?>/css/pushy.css">
+        
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+   
+    </head>
+
+
+	<style>
+	*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  color: #384047;
+}
+
+.center {
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: #f4f7f8;
+  border-radius: 8px;
+}
+
+
+
+.center1 {
+  max-width: 350px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: #FDFEFE;
+  border-radius: 8px;
+}
+
+
+.center2 {
+  max-width: 100%;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: Red;
+  border-radius: 8px;
+}
+
+h1 {
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 15px;
+  width: 100%;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 30px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0 4px 8px 0;
+}
+
+select {
+  padding: 6px;
+  height: 32px;
+  border-radius: 2px;
+}
+
+button {
+  padding: 19px 39px 18px 39px;
+  color: #FFF;
+  background-color: #4bc970;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #3ac162;
+  border-width: 1px 1px 3px;
+  box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+  margin-bottom: 10px;
+}
+
+fieldset {
+  margin-bottom: 30px;
+  border: none;
+}
+
+legend {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+label.light {
+  font-weight: 300;
+  display: inline;
+}
+
+.number {
+  background-color: #5fcf80;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  font-size: 0.8em;
+  margin-right: 4px;
+  line-height: 30px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+  border-radius: 100%;
+}
+
+@media screen and (min-width: 480px) {
+
+  form {
+    max-width: 480px;
+  }
+
+}
+
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+
+	</style>
+
+
+<body>
+<?php
+		
+
+		include($_SERVER['DOCUMENT_ROOT']."/$stockManager/index.php");
+		?>
+
+
+<div class='center'><h3 align="center">PRINT PREVIEW</h3>
+<div class='center1'>
+
+
+<table>
+<tr><td bgcolor='#4CAF50' align='right' width='50%'><font color='white'>  Item Id</font> </td> <td><?= $_GET['lotid']; ?></td></tr>
+<tr><td bgcolor='#4CAF50' align='right' width='50%'><font color='white'>  FIT </font></td> <td><?= $_GET['Fit']; ?></td></tr>
+<tr><td bgcolor='#4CAF50' align='right' width='50%'><font color='white'>  STYLE </font></td> <td><?= $_GET['Description']; ?></td></tr>
+<tr><td bgcolor='#4CAF50' align='right' width='50%'><font color='white'>  MAKER</font> </td> <td><?= $_GET['NAME']; ?></td></tr>
+<tr><td bgcolor='#4CAF50' align='right' width='50%'><font color='white'>  SIZE </font> </td> <td><?= $_GET['SIZE']; ?></td></tr>
+
+<tr><td bgcolor='#4CAF50' align='right' width='50%'> <font color='white'> 28 </font> </td> <td><?= $_GET['28']; ?></td></tr>
+<tr><td bgcolor='#4CAF50' align='right' width='50%'> <font color='white'> 30 </font> </td> <td><?= $_GET['30']; ?></td></tr>
+<tr><td bgcolor='#4CAF50' align='right' width='50%'> <font color='white'> 32 </font> </td> <td><?= $_GET['32']; ?></td></tr>
+<tr><td bgcolor='#4CAF50' align='right' width='50%'> <font color='white'> 34 </font> </td> <td><?= $_GET['34']; ?></td></tr>
+<tr><td bgcolor='#4CAF50' align='right' width='50%'> <font color='white'> 36 </font> </td> <td><?= $_GET['36']; ?></td></tr>
+<tr><td bgcolor='#4CAF50' align='right' width='50%'> <font color='white'> 38 </font> </td> <td><?= $_GET['38']; ?></td></tr>
+<tr><td bgcolor='#4CAF50' align='right' width='50%'> <font color='white'> 40 </font> </td> <td><?= $_GET['40']; ?></td></tr>
+<tr><td bgcolor='#4CAF50' align='right' width='50%'> <font color='white'> 42 </font> </td> <td><?= $_GET['42']; ?></td></tr>
+<tr><td bgcolor='#4CAF50' align='right' width='50%'> <font color='white'> 44 </font> </td> <td><?= $_GET['44']; ?></td></tr>
+<tr><td bgcolor='#4CAF50' align='right' width='50%'><font color='white'>  Data File</font> </td> <td><a href="./labledata.txt">Data</a></td></tr>
+
+
+</table>
+</div>
+</div>
+ 
+
+ <script src="/<?=$stockManager?>/js/pushy.min.js"></script>
+
+</body>
+
+
+
+

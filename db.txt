@@ -1,0 +1,74 @@
+drop database StockManager;
+
+
+create database StockManager;
+
+use StockManager;
+
+
+
+
+CREATE TABLE GENERALIZED_ITEMS(
+    items_id INT NOT NULL AUTO_INCREMENT UNIQUE,
+    BRAND VARCHAR(20) NOT NULL,
+    ITEM_STYLE VARCHAR(20) NOT NULL,
+    SIZE VARCHAR(20)NOT NULL,
+    AVAIALABLE_QTY INT DEFAULT 0,
+    SELLING_PRICE INT DEFAULT 0,
+    PRIMARY KEY(ITEM_STYLE,BRAND,SIZE)
+);
+
+
+CREATE TABLE received_logger(
+    received_logger_id INT NOT NULL AUTO_INCREMENT UNIQUE,
+    timestamplogger TIMESTAMP,
+    LOT_ID VARCHAR(6) NOT NULL,
+    BRAND VARCHAR(20) NOT NULL,
+    ITEM_STYLE VARCHAR(20) NOT NULL,
+    SIZE VARCHAR(20)NOT NULL,
+    RECEIVED_QTY INT DEFAULT 0,
+    PRIMARY KEY(timestamplogger),
+    
+    FOREIGN KEY(ITEM_STYLE,BRAND,SIZE) REFERENCES GENERALIZED_ITEMS(ITEM_STYLE,BRAND,SIZE)
+);
+
+
+
+
+
+
+
+******************************************AFTER_NEW_RECEIVED_LOGGER_
+CREATE TRIGGER `UPDATE_QTY_AFTER_RECEIVED_LOGGER` AFTER INSERT ON `received_logger` FOR EACH ROW 
+
+BEGIN UPDATE generalized_items SET AVAIALABLE_QTY= AVAIALABLE_QTY+NEW.RECEIVED_QTY WHERE 
+BRAND = NEW.BRAND AND ITEM_STYLE=NEW.ITEM_STYLE AND SIZE = NEW.SIZE; END
+
+****************************************AFTER_DELETE_RECEIVED_LOGGER
+
+CREATE TRIGGER `UPDATE_QTY_AFTER_RECEIVED_LOGGER_DELETE` 
+AFTER DELETE ON `received_logger` FOR EACH ROW 
+
+BEGIN 
+UPDATE generalized_items SET AVAIALABLE_QTY= AVAIALABLE_QTY-OLD.RECEIVED_QTY 
+WHERE BRAND = OLD.BRAND AND ITEM_STYLE=OLD.ITEM_STYLE AND SIZE = OLD.SIZE; END
+
+*******************************************TRIGGER IN SHOPWEBNX-----AFTER BILL ITEM DELETE**************
+DROP TRIGGER IF EXISTS `bill_item_after_delete`;
+CREATE DEFINER=`root`@`localhost` TRIGGER
+ `bill_item_after_delete` AFTER DELETE ON 
+ `bill_items_tbl` FOR EACH ROW BEGIN 
+ update bills_tbl set total_amount=total_amount-
+ (OLD.quantity*OLD.rate) where bill_id=OLD.bill_id; 
+ update StockManager.GENERALIZED_ITEMS set 
+ AVAIALABLE_QTY=AVAIALABLE_QTY+OLD.quantity 
+ where items_id=OLD.items_id; END
+
+
+ ****************************************TRIGGER IN SHOPWEBNX************************AFTER BILL ITEM ADDED************
+DROP TRIGGER IF EXISTS `bill_item_after_insert`;CREATE DEFINER=`root`@`localhost` TRIGGER `bill_item_after_insert` AFTER INSERT ON `bill_items_tbl` FOR EACH ROW BEGIN update bills_tbl set total_amount=total_amount+(NEW.quantity*NEW.rate) where bill_id=NEW.bill_id; update StockManager.GENERALIZED_ITEMS set AVAIALABLE_QTYAVAIALABLE_QTY=AVAIALABLE_QTY-NEW.quantity where items_id=NEW.items_id; END
+
+
+
+
+

@@ -20,7 +20,7 @@
 	$selected = mysqli_select_db($dbhandle,$dbname) 
  		 or die("Could not select database1");
 
-	$query_upload=" insert into GENERALIZED_ITEMS
+	$query_upload=" insert into generalized_items
 						(BRAND,ITEM_STYLE,SIZE) VALUES
 						('$brand','$itemStyle','$SIZE');";
 	

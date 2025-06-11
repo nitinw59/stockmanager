@@ -21,7 +21,7 @@ include($_SERVER['DOCUMENT_ROOT']."/htaccess.php");
 	$SELLING_PRICE=$_POST["SELLING_PRICE"];
 	
 	$query_upload=" update 
-                        GENERALIZED_ITEMS 
+                        generalized_items 
                         set 
                         BRAND='$BRAND',
                         ITEM_STYLE='$ITEM_STYLE',
@@ -40,7 +40,7 @@ include($_SERVER['DOCUMENT_ROOT']."/htaccess.php");
 	$SELLING_PRICE=$_POST["SELLING_PRICE"];
 	
 	$query_upload=" update 
-                        GENERALIZED_ITEMS 
+                        generalized_items 
                         set 
                         SELLING_PRICE=$SELLING_PRICE
                         where items_id='$items_id';";

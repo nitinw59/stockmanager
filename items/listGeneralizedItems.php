@@ -132,7 +132,7 @@
     $selected = mysqli_select_db($dbhandle,$dbname) 
                         or die(mysql_error());
 
-    $querry="select items_id,BRAND,ITEM_STYLE,SIZE,AVAIALABLE_QTY,SELLING_PRICE from GENERALIZED_ITEMS order by BRAND,ITEM_STYLE,SIZE";
+    $querry="select items_id,BRAND,ITEM_STYLE,SIZE,AVAIALABLE_QTY,SELLING_PRICE from generalized_items order by BRAND,ITEM_STYLE,SIZE";
 
     if($result=mysqli_query($dbhandle,$querry)){
         while($row=mysqli_fetch_array($result)){
